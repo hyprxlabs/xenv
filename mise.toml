@@ -1,0 +1,9 @@
+[tools]
+go = '1.24.5'
+
+
+[tasks.build]
+run = """
+go build -o bin/xenv ./main.go
+cp ./bin/xenv "$HOME/.local/bin/xenv"
+"""

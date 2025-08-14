@@ -1,0 +1,73 @@
+
+builds:
+  - id: hx-env
+    binary: hx-env
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    main: ./main.go
+    hooks:
+      pre: go mod tidy
+      post: go mod tidy
+
+checksum:
+  # You can change the name of the checksums file.
+  #
+  # Default: '{{ .ProjectName }}_{{ .Version }}_checksums.txt', or,
+  #   when split is set: '{{ .ArtifactName }}.{{ .Algorithm }}'.
+  # Templates: allowed.
+  name_template: "{{ .ProjectName }}-checksums.txt"
+
+archives:
+  - id: hx-env
+    formats: [tar.gz]
+    name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}-{{ .Version }}"
+    format_overrides:
+      - goos: windows
+        formats: [zip, tar.gz]
+
+    files:
+      - LICENSE.md
+      - README.md
+
+nfpms:
+  - id: hx-env
+    description:  |
+      hx-env is a command-line tool for managing environment variables and executing commands with those variables set."
+    homepage: "https://github.com/hyprxlabs/hx-env"
+    file_name_template: "{{ .PackageName }}-{{ .Os }}-{{ .Arch}}-{{ .Version }}"
+    maintainer: "Hyprxdev <180069990+hyprxdev@users.noreply.github.com>"
+    license: "MIT"
+    formats:
+      - deb
+      - rpm
+      - archlinux
+      - apk
+
+chocolateys:
+  - name: hx-env
+    description: |
+      A cross-platform cli-app for setting environment variables and executing commands with
+      the newly set environment variables.
+
+      The `hx-env` command allows you to set environment variables from the command line,
+      load them from `.env` files, or both, and execute a command with those environment variables.
+
+      The environment variables support environment variable expansion and command substitution.
+    package_source_url: "https://github.com/hyprxlabs/hx-env"
+    title: "hx-env"
+    project_url: "https://github.com/hyprxlabs/hx-env"
+    copyright: "Copyright © 2025 hyprxdev hyprxlabs"
+    require_license_acceptance: false
+    icon_url: "https://raw.githubusercontent.com/hyprxlabs/dotnet/refs/heads/main/eng/assets/hyprx_logo_256.png"
+    authors: "Hyprxdev <180069990+hyprxdev@users.noreply.github.com>"
+    tags: "env command-line run command dotenv"
+    summary: "hx-env is a crossplatform cli app for setting environment variables and executing commands with those variables set."
+    release_notes: "https://github.com/foo/bar/releases/tag/v{{ .Version }}"
+    skip_publish: true
+
+    
