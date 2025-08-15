@@ -1,4 +1,4 @@
-module github.com/hyprxlabs/go/hx-env
+module github.com/hyprxlabs/go/xenv
 
 go 1.24.5
 

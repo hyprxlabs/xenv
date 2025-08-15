@@ -38,7 +38,7 @@ replaces it with its output. Command substitution is disabled by default, but ca
 with the --command-substitution flag.
 `,
 	Example: `xenv -e NAME=VALUE -e ANOTHER=VALUE2 -E ./.env  --chdir /opt/bin bash -c 'echo $NAME $ANOTHER'`,
-	Version: "v0.0.0",
+	Version: Version,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		argv := os.Args[1:]
@@ -417,7 +417,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.hx-env.yaml)")
+	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.xenv.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
