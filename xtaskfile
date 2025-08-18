@@ -1,0 +1,11 @@
+shell: bash
+
+env:
+  XTASK_USE_GIT_BASH: "true"
+  XTASK_GIT_BIN: "C:/Program Files/Git/usr/bin/git.exe"
+
+tasks:
+  build:
+    run: |
+      go build -o bin/xenv ./main.go
+      cp ./bin/xenv "$HOME/.local/bin/xenv"
