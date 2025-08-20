@@ -241,6 +241,7 @@ with the --command-substitution flag.
 		}
 
 		opts := &env.ExpandOptions{
+			Env: vars,
 			Get: func(name string) string {
 				if value, ok := vars[name]; ok {
 					return value
@@ -426,7 +427,7 @@ func init() {
 	rootCmd.Flags().StringP("chdir", "C", "", "Change the working directory to the specified path")
 	rootCmd.Flags().BoolP("ignore-env", "i", false, "Ignores environment variables.")
 	rootCmd.Flags().StringArrayP("env", "e", nil, "Set an environment variable, e.g. NAME=VALUE")
-	rootCmd.Flags().StringArrayP("env-file", "E", nil, "Load environment variables from a file")
+	rootCmd.Flags().StringArrayP("dotenv", "E", nil, "Load environment variables from a .env file")
 	rootCmd.Flags().Bool("shim", false, "Shim the environment variables like HOME, USER, PWD, XDG_CONFIG_HOME, etc.")
 	rootCmd.Flags().Bool("use-shell", false, "Use shell execution.")
 	rootCmd.Flags().BoolP("command-substitution", "c", false, "Perform command substitution, e.g. `$(command)`")
